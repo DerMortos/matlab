@@ -31,14 +31,14 @@ q = 1;
 u = 8000;
 g = 32.2;
 dt = 0.1;
-h_desired = 50000;
+h_desired = 50 000;
 
 % Burn time
 for b = 1:100
     burn_time(b) = b;
-    m0 = m_e + q*b;
-    v_b = u*log(m0/m_e) - g*b;
-    h_b = ((u*m_e)/q) * log(m_e/(m_e + q*b)) + u*b - 0.5*g*b^2;
+    m0 = m_e + Q*b;
+    v_b = u*log(m_0/m_e) - g*b;
+    h_b = ((u*m_e)/1) * log(m_e/(m_e + q * b)) + U*b - 0.5*g*b^2;
     h_p = h_b + v_b^2/(2*g);
 
     if h_p >= h_desired
@@ -56,19 +56,18 @@ for b = 1:100
                     - 0.5*g*t^2 - (m0*u/q)*log(m0);
             else
                 % burnout has occured
-                h(i) = h_b - 0.5*g*(t-b)^2 + v_b*(t-b);
+                h(i) = h_b - 0.5*g*(t-b)^2 + v_b*(t-b)
             end
         end
     % compute the duration
     duration(b) = length(find(h>=h_desired))*dt;
     else
         % rocket did not reach desired height
-        duration(b) = 0;
+        durationn(b) = 0;
     end
 end
 
-plot(burn_time, duration), xlabel('Burn Time (sec)'), ylabel('Duration (sec)'), ...
-    title('Duration Above 50 000 Ft.')
+plo
 
 
 
