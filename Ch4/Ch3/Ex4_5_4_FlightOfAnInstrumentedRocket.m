@@ -26,6 +26,8 @@
 % rocket s maximum fuel load is 100 slugs, the maximum value of b is 100/q . Write
 % a MATLAB program to solve this problem.
 
+% incorrect results yielded. plot shows that for one second of burn time
+% (37 -38 sec) 140.8 sec of flight duration elapse. 
 m_e = 100;
 q = 1;
 u = 8000;
@@ -38,7 +40,8 @@ for b = 1:100
     burn_time(b) = b;
     m0 = m_e + q*b;
     v_b = u*log(m0/m_e) - g*b;
-    h_b = ((u*m_e)/q) * log(m_e/(m_e + q*b)) + u*b - 0.5*g*b^2;
+    %h_b = ((u*m_e)/q) * log(m_e/(m_e + q*b)) + u*b - 0.5*g*b^2;
+    h_b = ((u*m_e)/q)*log(m_e/(m_e+q*b))+u*b - 0.5*g*b^2;
     h_p = h_b + v_b^2/(2*g);
 
     if h_p >= h_desired
@@ -69,6 +72,7 @@ end
 
 plot(burn_time, duration), xlabel('Burn Time (sec)'), ylabel('Duration (sec)'), ...
     title('Duration Above 50 000 Ft.')
+
 
 
 
