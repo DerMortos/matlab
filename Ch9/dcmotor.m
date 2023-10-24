@@ -1,3 +1,6 @@
+%% ss requries:
+% Control System Toolbox
+
 R = 0.6;
 L = 0.002;
 c = 0;
@@ -8,7 +11,7 @@ I = 6e-5;
 A = [-R/L, -K_e/L; K_T/I, -c/I];
 B = [1/L; 0]; C = [0,1]; D = [0];
 
-sys = ss(A,B,C,D);
+sys = ss(A,B,C,D);      % state space model
 Time_constants = -1./real(eig(A))
 time = 0:0.0001:0.6;
 k = 0;
